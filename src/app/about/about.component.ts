@@ -41,6 +41,80 @@ export class AboutComponent {
     }
 
 
+    onReadDoc() {
+        this.db.doc('/courses/2RTZMra8RYkance3rgTU').get().subscribe(
+            (snap) => {
+                console.log(snap.id);
+                console.log(snap.data());
+            }
+        )
+    }
+
+    onReadTopLevelCollection() {
+        this.db.collection('courses').get().subscribe(snaps => {
+            snaps.forEach(snap => {
+                console.log(snap.id);
+                console.log(snap.data());
+            });
+        });
+    }
+
+    onReadNestedCollection() {
+        this.db.collection('/courses/2RTZMra8RYkance3rgTU/lessons').get().subscribe(snaps => {
+            snaps.forEach(snap => {
+                console.log(snap.id);
+                console.log(snap.data());
+            });
+        })
+    }
+
+    onReadFilteredNestedCollection() {
+        this.db.collection(
+            '/courses/2RTZMra8RYkance3rgTU/lessons',
+            ref => ref.where('seqNo', '<=', 5)
+        ).get().subscribe(snaps => {
+            snaps.forEach(snap => {
+                console.log(snap.id);
+                console.log(snap.data());
+            });
+        })
+    }
+
+    onReadFilteredCollectionWithCombinedIndex() {
+        this.db.collection(
+            'courses',
+            ref => ref
+                .where('price', '<=', 100)
+                .where('promo', '==', false)
+        ).get().subscribe(snaps => {
+            snaps.forEach(snap => {
+                console.log(snap.id);
+                console.log(snap.data());
+            });
+        });
+    }
+
+    onReadCollectionGroup() {
+        this.db.collectionGroup(
+            'lessons',
+            ref => ref.where('seqNo', '==', 1)
+        ).get().subscribe(snaps => {
+            snaps.forEach(snap => {
+                console.log(snap.id);
+                console.log(snap.data());
+            });
+        });
+    }
+
+
+    onReadDocUsingSnapshotChanges() {
+        this.db.doc('/courses/2RTZMra8RYkance3rgTU').snapshotChanges().subscribe(
+            (snap) => {
+                console.log(snap.payload.id);
+                console.log(snap.payload.data());
+            }
+        )
+    }
 }
 
 
