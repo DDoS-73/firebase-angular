@@ -4,13 +4,13 @@ import Timestamp = firebase.firestore.Timestamp;
 export interface Course {
   id: string;
   description: string;
-  url:string;
+  url: string;
   longDescription: string;
   iconUrl: string;
-  seqNo:number;
+  seqNo: number;
   categories: string[];
   lessonsCount: number;
-  promo:boolean;
+  promo: boolean;
   promoStartAt: Timestamp;
 }
 
