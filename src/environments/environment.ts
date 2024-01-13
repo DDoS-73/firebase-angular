@@ -4,13 +4,14 @@
 
 export const environment = {
   production: false,
+  useEmulators: true,
   firebase: {
-    apiKey: "AIzaSyDbtL_M8YOR8PLyKRW0N3EW_jTLKkLUKek",
-    authDomain: "fir-course-8233e.firebaseapp.com",
-    projectId: "fir-course-8233e",
-    storageBucket: "fir-course-8233e.appspot.com",
-    messagingSenderId: "551299841524",
-    appId: "1:551299841524:web:a63c71b6d9bbecc0d54da1"
+    apiKey: 'AIzaSyCHAgAFcoOZqNjQMjh1UXzeY9gar5cBKQo',
+    authDomain: 'fir-angular-5b571.firebaseapp.com',
+    projectId: 'fir-angular-5b571',
+    storageBucket: 'fir-angular-5b571.appspot.com',
+    messagingSenderId: '498755747298',
+    appId: '1:498755747298:web:c89473950575929405cdbb'
   },
   api: {
 
