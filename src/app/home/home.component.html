@@ -4,10 +4,13 @@
     <div class="header">
 
         <h2 class="title">All Courses</h2>
-
-        <button mat-mini-fab color="accent">
-            <mat-icon class="add-course-btn" routerLink="/create-course">add</mat-icon>
-        </button>
+        <ng-container *ngIf="(user.roles$ | async) as roles">
+            <ng-container *ngIf="roles.admin">
+                <button mat-mini-fab color="accent">
+                    <mat-icon class="add-course-btn" routerLink="/create-course">add</mat-icon>
+                </button>
+            </ng-container>
+        </ng-container>
 
     </div>
 
