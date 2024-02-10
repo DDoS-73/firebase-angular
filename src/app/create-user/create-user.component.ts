@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {throwError} from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'create-user',
@@ -23,12 +24,28 @@ export class CreateUserComponent {
 
   }
 
-    onCreateUser() {
+    onCreateUser(): void {
 
         const user = this.form.value;
 
         console.log(user);
 
+        this.http.post(environment.api.createUser, {
+            email: user.email,
+            password: user.password,
+            admin: user.admin
+        })
+            .pipe(
+                catchError(e => {
+                    console.log(e);
+                    alert('Could not create user');
+                    return throwError(e);
+                })
+            )
+            .subscribe(() => {
+                alert('User created');
+                this.form.reset();
+            });
     }
 
 }
